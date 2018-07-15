@@ -24,6 +24,20 @@ namespace ReceiptReaderAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:8080"));
+            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAllOrigins",
+            //        builder =>
+            //        {
+            //            builder.AllowAnyOrigin();
+            //        });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
