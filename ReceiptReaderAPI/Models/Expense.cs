@@ -4,8 +4,8 @@ namespace ReceiptReaderAPI.Models
 {
     public class Expense
     {
-        public DateTime date { get; set; }
+        public string date { get; set; }
 
-        public decimal amount { get; set; }
+        public string amount { get; set; }
     }
 }

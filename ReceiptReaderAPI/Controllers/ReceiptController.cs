@@ -22,13 +22,9 @@ namespace ReceiptReaderAPI.Controllers
             var byteData = Convert.FromBase64String(extractedImageData);
             var jsonResponse = await CognitiveServicesOCR.MakeOCRRequest(byteData);
 
-            var linesOfText = ExtractLines.ProcessOCR(jsonResponse);
+            var text = ExtractLinesService.ProcessOCRAsSingleLine(jsonResponse);
 
-            return new Expense
-            {
-                amount = 28.00M,
-                date = DateTime.Now
-            };
+            return ExpenseRegexService.ExtractExpenseInfo(text);            
         }
 
         private string ReadCameraData(Stream input)
